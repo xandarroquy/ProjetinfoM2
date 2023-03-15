@@ -9,7 +9,7 @@ package fr.insa.darroquy.devisbatiment;
  * @author Amadou Coulibaly
  */
 public class Coin {
-
+// Bonjour
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
