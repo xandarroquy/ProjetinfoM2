@@ -21,7 +21,7 @@ public class Coin {
         return sb.toString();
     }
     // Attributs
-    int idCoin;jrjrjr 
+    int idCoin;
     double cx;
     double cy;
     // Constructeur
