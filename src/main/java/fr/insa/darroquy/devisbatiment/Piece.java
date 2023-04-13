@@ -12,17 +12,23 @@ import java.util.ArrayList;
  */
 public class Piece {
     int idPiece;
-    ArrayList<Mur> listeMur;
     int Plafond;
     int Sol;
-    
+    ArrayList<Mur> listeMur;
 
-   
+    public Piece(int idPiece, int Plafond, int Sol, ArrayList<Mur> listeMur) {
+        this.idPiece = idPiece;
+        this.Plafond = Plafond;
+        this.Sol = Sol;
+        this.listeMur = listeMur;
+    }
+    
+    
    }
            
-   
-   
-    
-    
-    
+  
 
+   
+    
+    
+    
