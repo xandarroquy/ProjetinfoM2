@@ -14,13 +14,13 @@ import java.util.List;
 public class Plafond {
     int idPlafond;
     ArrayList<Coin>listeCoin;
-    ArrayList<Revetements> listeRevetements;
+    //ArrayList<Revetements> listeRevetements;
     
     Plafond(int id, ArrayList<Coin>coin, ArrayList<Revetements> revetements )
     {
         this.idPlafond=id;
         this.listeCoin=coin;
-        this.listeRevetements=revetements;
+        //this.listeRevetements=revetements;
     }
      double longueur()
     {
