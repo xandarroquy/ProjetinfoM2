@@ -20,7 +20,7 @@ public class Sol {
 Sol(int id, ArrayList<Revetements> revetements, ArrayList<Coin> coin ) {
     this.idSol=id;
     this.listeCoin=coin;
-    this.listeRevetements=revetements;
+    //this.listeRevetements=revetements;
 }   
      void afficher()
     {System.out.println("==== Sol =====");
@@ -30,11 +30,16 @@ Sol(int id, ArrayList<Revetements> revetements, ArrayList<Coin> coin ) {
         }
     }
      
+     void surface()
+     {
+         return(mur.longueur())
+     }
+     
      // toString
 
     @Override
     public String toString() {
-        return "Sol{" + "idSol=" + idSol + ", listeRevetements=" + listeRevetements + ", listeCoin=" + listeCoin + '}';
+        return "Sol{" + "idSol=" + idSol + ", listeCoin=" + listeCoin + '}';
     }
      
      
