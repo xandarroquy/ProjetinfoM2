@@ -13,24 +13,40 @@ import java.util.List;
  */
 public class Plafond {
     int idPlafond;
-    ArrayList<Coin>listeCoin;
-    //ArrayList<Revetements> listeRevetements;
+    ArrayList<Mur>listeMur;
+    ArrayList<Revetements> listeRevetements;
     
-    Plafond(int id, ArrayList<Coin>coin, ArrayList<Revetements> revetements )
+    Plafond(int id, ArrayList<Mur>mur, ArrayList<Revetements> revetements )
     {
         this.idPlafond=id;
-        this.listeCoin=coin;
-        //this.listeRevetements=revetements;
+        this.listeMur=mur;
+        this.listeRevetements=revetements;
     }
      double longueur()
     {
-        return();
+        double max = listeMur.get(0).longueur();
+        for (int i=1; i<=3; i++){
+            if (listeMur.get(i).longueur()>listeMur.get(0).longueur()){
+                max = listeMur.get(i).longueur();
+            }
+        }
+        return max ;
     }
      
-      double surface()
+     double largeur()
+     {
+         double min = listeMur.get(0).longueur();
+         for (int i=1; i<=3; i++){
+             if (listeMur.get(i).longueur()<listeMur.get(0).longueur()){
+                min = listeMur.get(i).longueur();}
+         }
+        return min ; 
+     }
+     
+             
+       double surface()
     {
-        System.out.println("\nEntrer la Hauteur du mur (hauteur sous-plafond)");
-        double hsp=Lire.d();
-        return();
+        
+        return(longueur()*largeur());
     }
 }
