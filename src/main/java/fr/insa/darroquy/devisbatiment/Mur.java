@@ -11,14 +11,18 @@ package fr.insa.darroquy.devisbatiment;
 public class Mur {
     int idMur;
     Coin debut, fin;
+    int nbrporte;
+    int nbrfenetre;
     
     
     
-    Mur(int id, Coin dc, Coin fc)
+    Mur(int id, Coin dc, Coin fc, int nbrp, int nbrf)
     {
         this.idMur=id;
         this.debut=dc;
         this.fin=fc;
+        this.nbrporte=nbrp;
+        this.nbrfenetre=nbrf;
     }
     
     void afficher()
@@ -32,11 +36,11 @@ public class Mur {
         return(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
     }
     
-    double surface()
+    double surface(int nbrp, int nbrf)
     {
         System.out.println("\nEntrer la Hauteur du mur (hauteur sous-plafond)");
         double hsp=Lire.d();
-        return(this.longueur()*hsp);
+        return(this.longueur()*hsp-(nbrp*1.89+1.44*nbrf));
     }
     @Override
     public String toString() {
