@@ -12,17 +12,21 @@ import java.util.ArrayList;
  */
 public class Piece {
     int idPiece;
-    int Plafond;
-    int Sol;
+    Plafond plafond;
+    Sol sol;
     ArrayList<Mur> listeMur;
 
-    public Piece(int idPiece, int Plafond, int Sol, ArrayList<Mur> listeMur) {
+    public Piece(int idPiece, Plafond plafond, Sol sol, ArrayList<Mur> listeMur) {
         this.idPiece = idPiece;
-        this.Plafond = Plafond;
-        this.Sol = Sol;
+        this.plafond = plafond;
+        this.sol = sol;
         this.listeMur = listeMur;
+      
     }
     
+    void afficher() {
+        System.out.println("Piece : id = "+ this.idPiece + ", sol = " + this.sol +", plafond = " + this.plafond);
+    }
     
    }
            
