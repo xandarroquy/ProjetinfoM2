@@ -11,36 +11,41 @@ import java.util.ArrayList;
  * @author acoirault01
  */
 public class Sol {
-    int idSol;
+     int idPlafond;
+    ArrayList<Mur>listeMur;
     ArrayList<Revetements> listeRevetements;
-    ArrayList<Coin> listeCoin;
     
-    
-    
-Sol(int id, ArrayList<Revetements> revetements, ArrayList<Coin> coin ) {
-    this.idSol=id;
-    this.listeCoin=coin;
-    //this.listeRevetements=revetements;
-}   
-     void afficher()
-    {System.out.println("==== Sol =====");
-        for (int i=0;i<listeCoin.size();i++)
-        {
-        this.listeCoin.get(i).afficher();
+    Sol(int id, ArrayList<Mur>mur, ArrayList<Revetements> revetements )
+    {
+        this.idPlafond=id;
+        this.listeMur=mur;
+        this.listeRevetements=revetements;
+    }
+     double longueur()
+    {
+        double max = listeMur.get(0).longueur();
+        for (int i=1; i<=3; i++){
+            if (listeMur.get(i).longueur()>listeMur.get(0).longueur()){
+                max = listeMur.get(i).longueur();
+            }
         }
+        return max ;
     }
      
-     void surface()
+     double largeur()
      {
-         return(mur.longueur())
+         double min = listeMur.get(0).longueur();
+         for (int i=1; i<=3; i++){
+             if (listeMur.get(i).longueur()<listeMur.get(0).longueur()){
+                min = listeMur.get(i).longueur();}
+         }
+        return min ; 
      }
      
-     // toString
-
-    @Override
-    public String toString() {
-        return "Sol{" + "idSol=" + idSol + ", listeCoin=" + listeCoin + '}';
+             
+       double surface()
+    {
+        
+        return(longueur()*largeur());
     }
-     
-     
 }
