@@ -18,7 +18,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 public class Devisbatiment {
     
-    public static void Lecture (int m, int a, int b){
+   public static ArrayList<Piece> listePiece = new ArrayList<>();
+   public static ArrayList<Appartement> listeAppartement = new ArrayList<>();
+   public static double [] Prix_pieces = new double [10];
+   public static double [] Prix_appartements = new double [10];
+   public static int l, w;
+    
+   public static void Lecture (int m, int a, int b){
         System.out.println("Revêtements disponibles :");
         try
         {
@@ -66,14 +72,18 @@ public class Devisbatiment {
                     
         }
         
-    
-
-    public static void main(String[] args) throws IOException {
+         public static void main(String[] args) throws IOException {
         
         FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+    
         
-        
+        System.out.println("combien voulez vous d'appartements dans votre immeuble ?");
+        int nbr_appart = Lire.i();
+        for(int u = 1; u<= nbr_appart; u++){
+        System.out.println("Combien voulez vous de pieces dans cet appartement ?");
+        int nbr_p = Lire.i();
+        for (int k = 1; k<= nbr_p; k++){
         Coin c1;
         System.out.println(" Identifiant du Coin");
         int id=Lire.i();
@@ -118,20 +128,27 @@ public class Devisbatiment {
          listeCoin.add(c3);
          listeCoin.add(c4);
          
-         for (Coin c : listeCoin){
-             bufferedWriter.write(c.idCoin + ";" + c.cx + ";" + c.cy + ";");
-             bufferedWriter.newLine();
-         }
+         //for (Coin c : listeCoin){
+           //  bufferedWriter.write(c.idCoin + ";" + c.cx + ";" + c.cy + ";");
+            // bufferedWriter.newLine();
+         //}
          
          System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
          int nbrf = Lire.i();
          System.out.println("Et combien voulez vous de portes ?");
          int nbrp = Lire.i();
          
+        double prix_m = 0;
          Lecture(1,0,0);
-         System.out.println("combien voulez vous de revetements ?");
-         int num = Lire.i();
-         Lecture_bis(num);
+         System.out.println("Combien voulez vous de revetements ?");
+         int nbrev = Lire.i();
+         for (int z=1; z<nbrev+1; z++){
+             System.out.println("Donnez le numéro du revêtement souhaité ?");
+             int num = Lire.i();
+             prix_m = prix_m + Lecture_bis(num);
+             
+         }
+         
          
          Mur m1;
          System.out.println(" Identifiant du Mur");
@@ -144,9 +161,24 @@ public class Devisbatiment {
          //Formattage de l'affichage
          System.out.format("\nLongueur du mur =%.2f",m1.longueur());
 //         System.out.printf("\nLongueur du mur =%.3f\n",m1.longueur());
-
-         System.out.format(m1.toString()+"\nSurface :%.2f",m1.surface(nbrp, nbrf));
+         double prix_m1 =  m1.surface(nbrp, nbrf)*prix_m;
+         System.out.println("Le prix de ce mur est :" + prix_m1 + " euros");
          
+        System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+         nbrf = Lire.i();
+         System.out.println("Et combien voulez vous de portes ?");
+         nbrp = Lire.i();
+         
+         prix_m = 0;
+         Lecture(1,0,0);
+         System.out.println("Combien voulez vous de revetements ?");
+         nbrev = Lire.i();
+         for (int z=1; z<nbrev+1; z++){
+             System.out.println("Donnez le numéro du revêtement souhaité ?");
+             int num = Lire.i();
+             prix_m = prix_m + Lecture_bis(num);
+             
+         } 
          Mur m2;
          System.out.println("Identifiant du Mur");
          id=Lire.i();
@@ -154,8 +186,24 @@ public class Devisbatiment {
          m2.afficher();
          System.out.println("Longueur du mur="+m2.longueur());
          System.out.format("\nLongueur du mur =%.2f", m2.longueur());
-         System.out.format(m2.toString()+"\nSurface :%.2f",m2.surface(nbrp, nbrf));
+         double prix_m2 =  m2.surface(nbrp, nbrf)*prix_m;
+         System.out.println("Le prix de ce mur est :" + prix_m2 + " euros");
          
+        System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+         nbrf = Lire.i();
+         System.out.println("Et combien voulez vous de portes ?");
+         nbrp = Lire.i();
+         
+        prix_m = 0;
+         Lecture(1,0,0);
+         System.out.println("Combien voulez vous de revetements ?");
+         nbrev = Lire.i();
+         for (int z=1; z<nbrev+1; z++){
+             System.out.println("Donnez le numéro du revêtement souhaité ?");
+             int num = Lire.i();
+             prix_m = prix_m + Lecture_bis(num);
+             
+         }
          Mur m3;
          System.out.println("Identifiant du Mur");
          id=Lire.i();
@@ -163,8 +211,24 @@ public class Devisbatiment {
          m3.afficher();
          System.out.println("Longueur du mur="+m3.longueur());
          System.out.format("\nLongueur du mur =%.2f", m3.longueur());
-         System.out.format(m3.toString()+"\nSurface :%.2f",m3.surface(nbrp, nbrf));
+         double prix_m3 =  m3.surface(nbrp, nbrf)*prix_m;
+         System.out.println("Le prix de ce mur est :" + prix_m3 + " euros");
          
+         System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+         nbrf = Lire.i();
+         System.out.println("Et combien voulez vous de portes ?");
+         nbrp = Lire.i();
+         
+        prix_m = 0;
+         Lecture(1,0,0);
+         System.out.println("Combien voulez vous de revetements ?");
+         nbrev = Lire.i();
+         for (int z=1; z<nbrev+1; z++){
+             System.out.println("Donnez le numéro du revêtement souhaité ?");
+             int num = Lire.i();
+             prix_m = prix_m + Lecture_bis(num);
+             
+         }
          Mur m4;
          System.out.println("Identifiant du Mur");
          id=Lire.i();
@@ -172,7 +236,8 @@ public class Devisbatiment {
          m4.afficher();
          System.out.println("Longueur du mur="+m4.longueur());
          System.out.format("\nLongueur du mur =%.2f", m4.longueur());
-         System.out.format(m4.toString()+"\nSurface :%.2f",m4.surface(nbrp, nbrf));
+         double prix_m4 =  m4.surface(nbrp, nbrf)*prix_m;
+         System.out.println("Le prix de ce mur est :" + prix_m4 + " euros");
         
          ArrayList<Mur> listeMur = new ArrayList<>();
          listeMur.add(m1);
@@ -180,33 +245,88 @@ public class Devisbatiment {
          listeMur.add(m3);
          listeMur.add(m4);
          
-         for (Mur m : listeMur){
-             bufferedWriter.write(m.idMur + ";" + m.debut + ";" + m.fin + ";");
-             bufferedWriter.newLine();
-         }
+         //for (Mur m : listeMur){
+            // bufferedWriter.write(m.idMur + ";" + m.debut + ";" + m.fin + ";");
+            // bufferedWriter.newLine();
+         //}
          
          ArrayList<Revetements> listeRevetements = new ArrayList<>();
+         
+         prix_m = 0;
+         Lecture(0,0,1);
+         System.out.println("Pour ce plafond, combien voulez vous de revetements ?");
+         nbrev = Lire.i();
+         for (int z=1; z<nbrev+1; z++){
+             System.out.println("Donnez le numéro du revêtement souhaité ?");
+             int num = Lire.i();
+             prix_m = prix_m + Lecture_bis(num);
+             
+         }
     
          Plafond pl1;
          System.out .println("Identifiant du plafond");
          id = Lire.i();
          pl1=new Plafond (id, listeMur, listeRevetements );
+         double prix_pl1 =  pl1.surface()*prix_m;
+         System.out.println("Le prix de ce plafond est :" + prix_pl1 + " euros");
          
          
+         
+         prix_m = 0;
+         Lecture(0,1,0);
+         System.out.println("Pour ce sol, combien voulez vous de revetements ?");
+         nbrev = Lire.i();
+         for (int z=1; z<nbrev+1; z++){
+             System.out.println("Donnez le numéro du revêtement souhaité ?");
+             int num = Lire.i();
+             prix_m = prix_m + Lecture_bis(num);}
+        
+             
          Sol s1;
          System.out.println("Identifiant du Sol");
          id = Lire.i();
          s1 = new Sol (id, listeMur, listeRevetements);
+         double prix_s1 =  s1.surface()*prix_m;
+         System.out.println("Le prix de ce sol est :" + prix_s1 + " euros");
          
-         
+        
          Piece p1;
          System.out.println("Identifiant de la pièce");
          id=Lire.i();
          p1=new Piece(id, pl1, s1, listeMur );
-         
-         bufferedWriter.flush();
-         bufferedWriter.close();
-         
+         double prix_piece = prix_m1 + prix_m2 + prix_m3 + prix_m4 + prix_s1 + prix_pl1;
+         System.out.println("Le prix de la piece est de :" + prix_piece);
+         listePiece.add(p1);
+         Prix_pieces[l] = prix_piece;
+         l = l + 1;
+        // bufferedWriter.flush();
+        // bufferedWriter.close();
+        }
+        Appartement Appart1;
+        System.out.println("Identifiant de l'appartement");
+        int id = Lire.i();
+        Appart1 = new Appartement(id, listePiece);
+        listeAppartement.add(Appart1);
+        double prix_appart = 0;
+        for (int j=0; j<Prix_pieces.length; j++){
+            prix_appart = Prix_pieces[j] + prix_appart;
+            
+        }
+        Prix_appartements[w] = prix_appart;
+        w = w + 1;
+        }
+        
+        Immeuble Immeuble1;
+        System.out.println("Identifiant de l'immeuble");
+        int id = Lire.i();
+        Immeuble1 = new Immeuble(id, listeAppartement);
+        double prix_immeuble = 0;
+        for (int v=0; v<Prix_appartements.length; v++ ){
+            prix_immeuble = Prix_appartements[v] + prix_immeuble;
+        }
+        System.out.println("L'immeuble coûte au total " + prix_immeuble);
+        
+        
         
     }
 }
