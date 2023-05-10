@@ -32,6 +32,13 @@ public class Coin {
       this.cy=y;
     }
     
+    public double getX(){
+        return cx;
+    }
+    public double getY(){
+        return cy;
+    }
+    
     void afficher()
     {
         System.out.println(" Coin : id ="+this.idCoin+" abscisse = "+this.cx+ " Ordonnée ="+this.cy);
