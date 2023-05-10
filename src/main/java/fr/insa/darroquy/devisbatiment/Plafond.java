@@ -15,12 +15,14 @@ public class Plafond {
     int idPlafond;
     ArrayList<Mur>listeMur;
     ArrayList<Revetements> listeRevetements;
+    int nbrtremie;
     
-    Plafond(int id, ArrayList<Mur>mur, ArrayList<Revetements> revetements )
+    Plafond(int id, ArrayList<Mur>mur, ArrayList<Revetements> revetements, int nbrt )
     {
         this.idPlafond=id;
         this.listeMur=mur;
         this.listeRevetements=revetements;
+        this.nbrtremie=nbrt;
     }
      double longueur()
     {
@@ -44,9 +46,9 @@ public class Plafond {
      }
      
              
-       double surface()
+       double surface(int nbrt)
     {
         
-        return(longueur()*largeur());
+        return(longueur()*largeur()-nbrt);
     }
 }
