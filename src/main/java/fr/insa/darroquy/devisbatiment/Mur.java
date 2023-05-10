@@ -25,6 +25,13 @@ public class Mur {
         this.nbrfenetre=nbrf;
     }
     
+    public Coin getDC(){
+        return debut;
+    }
+    public Coin getFC(){
+        return fin;
+    }
+    
     void afficher()
     {System.out.println("==== Mur =====");
         this.debut.afficher();
