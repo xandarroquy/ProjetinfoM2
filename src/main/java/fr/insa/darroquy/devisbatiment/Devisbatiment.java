@@ -269,10 +269,19 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          }
     
          Plafond pl1;
+         int nbrt = 0;
          System.out .println("Identifiant du plafond");
          id = Lire.i();
-         pl1=new Plafond (id, listeMur, listeRevetements );
-         double prix_pl1 =  pl1.surface()*prix_m;
+         System.out.println("Voulez vous mettre une trémie ?(oui = 1, non = 0)");
+         int r = Lire.i();
+         if ( r==1 ){
+            nbrt = 1;
+         }
+         else{
+             nbrt = 0;
+         }
+         pl1=new Plafond (id, listeMur, listeRevetements, nbrt);
+         double prix_pl1 =  pl1.surface(nbrt)*prix_m;
          System.out.println("Le prix de ce plafond est :" + prix_pl1 + " euros");
          
          
