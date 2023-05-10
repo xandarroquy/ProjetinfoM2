@@ -47,6 +47,10 @@ public class Mur {
     {
         System.out.println("\nEntrer la Hauteur du mur (hauteur sous-plafond)");
         double hsp=Lire.d();
+        while (hsp<2.1){
+            System.out.println("La hauteur sous plafond est trop basse !");
+            hsp = Lire.d();
+        }
         return(this.longueur()*hsp-(nbrp*1.89+1.44*nbrf));
     }
     @Override
