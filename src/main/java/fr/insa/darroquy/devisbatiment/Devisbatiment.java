@@ -96,6 +96,9 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          int nbrf = Lire.i();
          System.out.println("Et combien voulez vous de portes ?");
          int nbrp = Lire.i();
+         double lpf = nbrp*0.9+nbrf*1.2;
+         
+         
          
         double prix_m = 0;
          Lecture(1,0,0);
@@ -119,6 +122,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          System.out.println("Longueur du mur ="+m1.longueur());
          //Formattage de l'affichage
          System.out.format("\nLongueur du mur =%.2f",m1.longueur());
+         System.out.println("                ");
+         while (lpf>m1.longueur()){
+             System.out.println("La longueur disponible n'est pas suffisante");
+             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+             nbrf = Lire.i();
+             System.out.println("Et combien voulez vous de portes ?");
+             nbrp = Lire.i();
+             lpf = nbrp*0.9+nbrf*1.2;
+             
+         }
 //         System.out.printf("\nLongueur du mur =%.3f\n",m1.longueur());
          double prix_m1 =  m1.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m1 + " euros");
@@ -127,6 +140,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          nbrf = Lire.i();
          System.out.println("Et combien voulez vous de portes ?");
          nbrp = Lire.i();
+         lpf = nbrp*0.9+nbrf*1.2;
          
          prix_m = 0;
          Lecture(1,0,0);
@@ -145,6 +159,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          m2.afficher();
          System.out.println("Longueur du mur="+m2.longueur());
          System.out.format("\nLongueur du mur =%.2f", m2.longueur());
+         System.out.println("                ");
+         while (lpf>m2.longueur()){
+             System.out.println("La longueur disponible n'est pas suffisante");
+             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+             nbrf = Lire.i();
+             System.out.println("Et combien voulez vous de portes ?");
+             nbrp = Lire.i();
+             lpf = nbrp*0.9+nbrf*1.2;
+             
+         }
          double prix_m2 =  m2.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m2 + " euros");
          
@@ -152,6 +176,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          nbrf = Lire.i();
          System.out.println("Et combien voulez vous de portes ?");
          nbrp = Lire.i();
+         lpf = nbrp*0.9+nbrf*1.2;
          
         prix_m = 0;
          Lecture(1,0,0);
@@ -170,6 +195,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          m3.afficher();
          System.out.println("Longueur du mur="+m3.longueur());
          System.out.format("\nLongueur du mur =%.2f", m3.longueur());
+         System.out.println("                ");
+         while (lpf>m3.longueur()){
+             System.out.println("La longueur disponible n'est pas suffisante");
+             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+             nbrf = Lire.i();
+             System.out.println("Et combien voulez vous de portes ?");
+             nbrp = Lire.i();
+             lpf = nbrp*0.9+nbrf*1.2;
+             
+         }
          double prix_m3 =  m3.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m3 + " euros");
          
@@ -177,6 +212,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          nbrf = Lire.i();
          System.out.println("Et combien voulez vous de portes ?");
          nbrp = Lire.i();
+         lpf = nbrp*0.9+nbrf*1.2;
          
         prix_m = 0;
          Lecture(1,0,0);
@@ -195,6 +231,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          m4.afficher();
          System.out.println("Longueur du mur="+m4.longueur());
          System.out.format("\nLongueur du mur =%.2f", m4.longueur());
+         System.out.println("                ");
+         while (lpf>m4.longueur()){
+             System.out.println("La longueur disponible n'est pas suffisante");
+             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
+             nbrf = Lire.i();
+             System.out.println("Et combien voulez vous de portes ?");
+             nbrp = Lire.i();
+             lpf = nbrp*0.9+nbrf*1.2;
+             
+         }
          double prix_m4 =  m4.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m4 + " euros");
         
