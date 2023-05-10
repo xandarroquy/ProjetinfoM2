@@ -16,69 +16,28 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-public class Devisbatiment {
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class Devisbatiment extends Application /*throws IOException*/ {
     
    public static ArrayList<Piece> listePiece = new ArrayList<>();
    public static ArrayList<Appartement> listeAppartement = new ArrayList<>();
    public static double [] Prix_pieces = new double [10];
    public static double [] Prix_appartements = new double [10];
    public static int l, w;
-    
-   public static void Lecture (int m, int a, int b){
-        System.out.println("Revêtements disponibles :");
-        try
-        {
-        BufferedReader Catalogue_revetements=new BufferedReader(new FileReader("Catalogue_revetements.txt"));
-        String ligne = Catalogue_revetements.readLine();// Ligne lue depuis le fichier
-        while(ligne!=null)
-        {
-            String[] listRev = ligne.split(";");
-            ligne = Catalogue_revetements.readLine();    
-            if (listRev[2].equals(String.valueOf(m))&&(listRev[2].equals("1"))){
-                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
-            }
-            if (listRev[3].equals(String.valueOf(a))&&(listRev[3].equals("1"))){
-                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
-            }
-            if (listRev[4].equals(String.valueOf(b))&&(listRev[4].equals("1"))){
-                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
-                }
-        }}
-        catch(FileNotFoundException err){
-        System.out.println( "Erreur :le fichier n’existe pas!\n "+err);}
-        catch (IOException err){
-        System.out.println(" Erreur :\n "+err);}}
-        
-        
-        
-        public static double Lecture_bis(int num){
-            try
-        {
-        BufferedReader Catalogue_revetements=new BufferedReader(new FileReader("Catalogue_revetements.txt"));
-        String ligne = Catalogue_revetements.readLine();// Ligne lue depuis le fichier
-        while(ligne!=null)
-        {
-            String[] listRev = ligne.split(";");
-            ligne = Catalogue_revetements.readLine();    
-            if(listRev[0].equals(String.valueOf(num))){
-                return Double.parseDouble(listRev[5]);
-            }
-        }}
-        catch(FileNotFoundException err){
-        System.out.println( "Erreur :le fichier n’existe pas!\n "+err);}
-        catch (IOException err){
-        System.out.println(" Erreur :\n "+err);}
-            return(0);
-                    
+   public static ArrayList<Mur> listeMur;
+           public static ArrayList<Mur> getListemur (){
+            return listeMur ;
         }
-        
-         public static void main(String[] args) throws IOException {
-        
-        FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+   @Override
+   public void start(Stage primaryStage){
+       
+        //FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
+        //BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
     
         
-        System.out.println("combien voulez vous d'appartements dans votre immeuble ?");
+        System.out.println("Combien voulez vous d'appartements dans votre immeuble ?");
         int nbr_appart = Lire.i();
         for(int u = 1; u<= nbr_appart; u++){
         System.out.println("Combien voulez vous de pieces dans cet appartement ?");
@@ -239,7 +198,7 @@ public class Devisbatiment {
          double prix_m4 =  m4.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m4 + " euros");
         
-         ArrayList<Mur> listeMur = new ArrayList<>();
+         listeMur = new ArrayList<>();
          listeMur.add(m1);
          listeMur.add(m2);
          listeMur.add(m3);
@@ -314,6 +273,7 @@ public class Devisbatiment {
         }
         Prix_appartements[w] = prix_appart;
         w = w + 1;
+        
         }
         
         Immeuble Immeuble1;
@@ -329,4 +289,60 @@ public class Devisbatiment {
         
         
     }
+
+    public static void main (String[]args){
+        launch(args);
+    }
+
+    public static void Lecture (int m, int a, int b){
+        System.out.println("Revêtements disponibles :");
+        try
+        {
+        BufferedReader Catalogue_revetements=new BufferedReader(new FileReader("Catalogue_revetements.txt"));
+        String ligne = Catalogue_revetements.readLine();// Ligne lue depuis le fichier
+        while(ligne!=null)
+        {
+            String[] listRev = ligne.split(";");
+            ligne = Catalogue_revetements.readLine();    
+            if (listRev[2].equals(String.valueOf(m))&&(listRev[2].equals("1"))){
+                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
+            }
+            if (listRev[3].equals(String.valueOf(a))&&(listRev[3].equals("1"))){
+                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
+            }
+            if (listRev[4].equals(String.valueOf(b))&&(listRev[4].equals("1"))){
+                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
+                }
+        }}
+        catch(FileNotFoundException err){
+        System.out.println( "Erreur :le fichier n’existe pas!\n "+err);}
+        catch (IOException err){
+        System.out.println(" Erreur :\n "+err);}}
+    
+
+        
+        
+        
+        public static double Lecture_bis(int num){
+            try
+        {
+        BufferedReader Catalogue_revetements=new BufferedReader(new FileReader("Catalogue_revetements.txt"));
+        String ligne = Catalogue_revetements.readLine();// Ligne lue depuis le fichier
+        while(ligne!=null)
+        {
+            String[] listRev = ligne.split(";");
+            ligne = Catalogue_revetements.readLine();    
+            if(listRev[0].equals(String.valueOf(num))){
+                return Double.parseDouble(listRev[5]);
+            }
+        }}
+        catch(FileNotFoundException err){
+        System.out.println( "Erreur :le fichier n’existe pas!\n "+err);}
+        catch (IOException err){
+        System.out.println(" Erreur :\n "+err);}
+            return(0);
+                    
+        }
+        
+
 }
