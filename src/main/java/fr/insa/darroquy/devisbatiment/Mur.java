@@ -16,6 +16,7 @@ public class Mur {
     
     
     
+    
     Mur(int id, Coin dc, Coin fc, int nbrp, int nbrf)
     {
         this.idMur=id;
@@ -23,6 +24,7 @@ public class Mur {
         this.fin=fc;
         this.nbrporte=nbrp;
         this.nbrfenetre=nbrf;
+        
     }
     
     public Coin getDC(){
