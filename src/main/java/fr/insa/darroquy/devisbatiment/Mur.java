@@ -9,7 +9,7 @@ package fr.insa.darroquy.devisbatiment;
  * @author Amadou Coulibaly
  */
 public class Mur {
-    int idMur;
+    double idMur;
     Coin debut, fin;
     int nbrporte;
     int nbrfenetre;
@@ -17,7 +17,7 @@ public class Mur {
     
     
     
-    Mur(int id, Coin dc, Coin fc, int nbrp, int nbrf)
+    Mur(double id, Coin dc, Coin fc, int nbrp, int nbrf)
     {
         this.idMur=id;
         this.debut=dc;
