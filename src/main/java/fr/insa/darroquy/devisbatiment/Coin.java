@@ -21,11 +21,11 @@ public class Coin {
         return sb.toString();
     }
     // Attributs
-    int idCoin;
+    double idCoin;
     double cx;
     double cy;
     // Constructeur
-    Coin(int id, double x, double y)
+    Coin(double id, double x, double y)
     {
       this.idCoin=id;
       this.cx=x;
