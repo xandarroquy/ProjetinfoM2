@@ -276,7 +276,9 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          pl1=new Plafond (id, listeMur, listeRevetements, str);
          double prix_pl1 =  pl1.surface(str)*prix_m;
          System.out.println("Le prix de ce plafond est :" + prix_pl1 + " euros");
-         
+        
+         ArrayList<Plafond> listePlafond = new ArrayList<>();
+         listePlafond.add(pl1);
          
          
          prix_m = 0;
@@ -295,6 +297,8 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          s1 = new Sol (id, listeMur, listeRevetements);
          double prix_s1 =  s1.surface()*prix_m;
          System.out.println("Le prix de ce sol est :" + prix_s1 + " euros");
+         ArrayList<Sol> listeSol = new ArrayList<>();
+         listeSol.add(s1);
          
         
          Piece p1;
@@ -314,6 +318,14 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          
          for (Mur m : listeMur){
              bufferedWriter.write("Mur:"+m.idMur + ";" + m.debut + ";" + m.fin + ";");
+             bufferedWriter.newLine();
+         }
+         for (Plafond p : listePlafond){
+             bufferedWriter.write("Plafond:"+p.idPlafond + ";" );
+             bufferedWriter.newLine();
+         }
+         for (Sol s : listeSol){
+             bufferedWriter.write("Sol:"+s.idSol + ";" );
              bufferedWriter.newLine();
          }
          for (Piece p : listePiece){
