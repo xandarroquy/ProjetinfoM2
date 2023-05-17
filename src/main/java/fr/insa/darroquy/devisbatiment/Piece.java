@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * @author acoirault01
  */
 public class Piece {
-    int idPiece;
+    double idPiece;
     Plafond plafond;
     Sol sol;
     ArrayList<Mur> listeMur;
 
-    public Piece(int idPiece, Plafond plafond, Sol sol, ArrayList<Mur> listeMur) {
+    public Piece(double idPiece, Plafond plafond, Sol sol, ArrayList<Mur> listeMur) {
         this.idPiece = idPiece;
         this.plafond = plafond;
         this.sol = sol;
