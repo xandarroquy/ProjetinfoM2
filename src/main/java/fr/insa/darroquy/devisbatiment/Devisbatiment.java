@@ -31,10 +31,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             return listeMur ;
         }
    @Override
-   public void start(Stage primaryStage){
+   public void start(Stage primaryStage) throws IOException{
        
-        //FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
-        //BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
     
         
         System.out.println("Combien voulez vous d'appartements dans votre immeuble ?");
@@ -51,7 +51,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         System.out.println(" Ordonnée du Coin");
         double y=Lire.d();
         c1=new Coin(id,x,y);
-        // Pour afficher textuellement le coin c1
         c1.afficher();
                 
          Coin c2;
@@ -87,10 +86,8 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          listeCoin.add(c3);
          listeCoin.add(c4);
          
-         //for (Coin c : listeCoin){
-           //  bufferedWriter.write(c.idCoin + ";" + c.cx + ";" + c.cy + ";");
-            // bufferedWriter.newLine();
-         //}
+         
+         
          
          System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
          int nbrf = Lire.i();
@@ -250,10 +247,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          listeMur.add(m3);
          listeMur.add(m4);
          
-         //for (Mur m : listeMur){
-            // bufferedWriter.write(m.idMur + ";" + m.debut + ";" + m.fin + ";");
-            // bufferedWriter.newLine();
-         //}
          
          ArrayList<Revetements> listeRevetements = new ArrayList<>();
          
@@ -313,8 +306,17 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          listePiece.add(p1);
          Prix_pieces[l] = prix_piece;
          l = l + 1;
-        // bufferedWriter.flush();
-        // bufferedWriter.close();
+         
+         for (Coin c : listeCoin){
+             bufferedWriter.write(c.idCoin + ";" + c.cx + ";" + c.cy + ";");
+             bufferedWriter.newLine();
+         }
+         
+         for (Mur m : listeMur){
+             bufferedWriter.write(m.idMur + ";" + m.debut + ";" + m.fin + ";");
+             bufferedWriter.newLine();
+         }
+         
         }
         Appartement Appart1;
         System.out.println("Identifiant de l'appartement");
@@ -340,6 +342,9 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             prix_immeuble = Prix_appartements[v] + prix_immeuble;
         }
         System.out.println("L'immeuble coûte au total " + prix_immeuble);
+        
+        bufferedWriter.flush();
+        bufferedWriter.close();
         
         
         
