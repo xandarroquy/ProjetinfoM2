@@ -11,11 +11,11 @@ import java.util.ArrayList;
  * @author acoirault01
  */
 public class Sol {
-     int idSol;
+     double idSol;
     ArrayList<Mur>listeMur;
     ArrayList<Revetements> listeRevetements;
     
-    Sol(int id, ArrayList<Mur>mur, ArrayList<Revetements> revetements )
+    Sol(double id, ArrayList<Mur>mur, ArrayList<Revetements> revetements )
     {
         this.idSol=id;
         this.listeMur=mur;
