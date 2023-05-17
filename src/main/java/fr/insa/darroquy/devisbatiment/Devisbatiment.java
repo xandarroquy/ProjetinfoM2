@@ -9,6 +9,7 @@ package fr.insa.darroquy.devisbatiment;
  *
  * @author xdarroquy01
  */
+import java.awt.FlowLayout;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -21,6 +22,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Devisbatiment extends Application /*throws IOException*/ {
     
@@ -32,6 +36,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
    public static ArrayList<Piece> listePiece = new ArrayList<>();
    public static ArrayList<Mur> listeMur= new ArrayList<>(); 
    public static ArrayList<Coin> listeCoin= new ArrayList<>();
+   public static ArrayList<Revetements> listeRevetements = new ArrayList<>();
 
    
            public static ArrayList<Mur> getListemur (){
@@ -52,6 +57,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         
         TextInputDialog dialog;
         dialog = new TextInputDialog();
+        
         
         dialog.setTitle("Nombre d'appartements");
         dialog.setHeaderText("Definissez le nombre d'appartements");
@@ -165,153 +171,244 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          
          
          
-         
-         System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-         int nbrf = Lire.i();
-         System.out.println("Et combien voulez vous de portes ?");
-         int nbrp = Lire.i();
-         double lpf = nbrp*0.9+nbrf*1.2;
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setContentText("Combien voulez-vous de fenêtres ?");
+        Optional<String> nf = dialog.showAndWait();
+        double nbrf = Double.parseDouble(nf.get());
+        
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
+        dialog.setContentText("Combien voulez-vous de portes ?");
+        Optional<String> np = dialog.showAndWait();
+        double nbrp = Double.parseDouble(np.get());
+        
+        double lpf = nbrp*0.9+nbrf*1.2;
          
          
          
         double prix_m = 0;
-         Lecture(1,0,0);
-         System.out.println("Combien voulez vous de revetements ?");
-         int nbrev = Lire.i();
+        Lecture(1,0,0);
+        dialog.setTitle("Revêtements");
+        dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
+        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        Optional<String> nr = dialog.showAndWait();
+        int nbrev = Integer.parseInt(nr.get());
          for (int z=1; z<nbrev+1; z++){
-             System.out.println("Donnez le numéro du revêtement souhaité ?");
-             int num = Lire.i();
+             dialog.setTitle("Revêtements");
+            dialog.setHeaderText("Definissez le type de revêtements que vous désirez");
+            dialog.setContentText("Quel revêtement voulez-vous ?");
+            Optional<String> tr = dialog.showAndWait();
+            int num = Integer.parseInt(tr.get());
+             
              prix_m = prix_m + Lecture_bis(num);
              
          }
          
          
          Mur m1;
-         System.out.println(" Identifiant du Mur");
-         id=Lire.i();
+         dialog.setTitle("Création des murs");
+         dialog.setHeaderText("Definissez l'identifiant du mur");
+         dialog.setContentText("Quel est l'identifiant du mur ?");
+         Optional<String> IDm1 = dialog.showAndWait();
+         id = Double.parseDouble(IDm1.get());
          m1=new Mur(id,c1,c2, nbrp, nbrf);
          m1.afficher();
-//         System.out.println(c2.toString());
-//         System.out.println(m1.toString());
          System.out.println("Longueur du mur ="+m1.longueur());
-         //Formattage de l'affichage
          System.out.format("\nLongueur du mur =%.2f",m1.longueur());
          System.out.println("                ");
          while (lpf>m1.longueur()){
-             System.out.println("La longueur disponible n'est pas suffisante");
-             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-             nbrf = Lire.i();
-             System.out.println("Et combien voulez vous de portes ?");
-             nbrp = Lire.i();
+             dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
+            Optional<String> nf_5 = dialog.showAndWait();
+            nbrf = Double.parseDouble(nf_5.get());
+        
+            dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de portes ?");
+            Optional<String> np_5 = dialog.showAndWait();
+            nbrp = Double.parseDouble(np_5.get());
              lpf = nbrp*0.9+nbrf*1.2;
              
          }
-//         System.out.printf("\nLongueur du mur =%.3f\n",m1.longueur());
          double prix_m1 =  m1.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m1 + " euros");
          
-        System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-         nbrf = Lire.i();
-         System.out.println("Et combien voulez vous de portes ?");
-         nbrp = Lire.i();
-         lpf = nbrp*0.9+nbrf*1.2;
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setContentText("Combien voulez-vous de fenêtres ?");
+        Optional<String> nf_2 = dialog.showAndWait();
+        nbrf = Double.parseDouble(nf_2.get());
+        
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
+        dialog.setContentText("Combien voulez-vous de portes ?");
+        Optional<String> np_2 = dialog.showAndWait();
+        nbrp = Double.parseDouble(np_2.get());
+        
+        lpf = nbrp*0.9+nbrf*1.2;
          
-         prix_m = 0;
-         Lecture(1,0,0);
-         System.out.println("Combien voulez vous de revetements ?");
-         nbrev = Lire.i();
+        prix_m = 0;
+        Lecture(1,0,0);
+        dialog.setTitle("Revêtements");
+        dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
+        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        Optional<String> nr_2 = dialog.showAndWait();
+        nbrev = Integer.parseInt(nr_2.get());
          for (int z=1; z<nbrev+1; z++){
-             System.out.println("Donnez le numéro du revêtement souhaité ?");
-             int num = Lire.i();
+             dialog.setTitle("Revêtements");
+            dialog.setHeaderText("Definissez le type de revêtements que vous désirez");
+            dialog.setContentText("Quel revêtement voulez-vous ?");
+            Optional<String> tr_2 = dialog.showAndWait();
+            int num = Integer.parseInt(tr_2.get());
+             
              prix_m = prix_m + Lecture_bis(num);
              
          } 
          Mur m2;
-         System.out.println("Identifiant du Mur");
-         id=Lire.i();
+         dialog.setTitle("Création des murs");
+         dialog.setHeaderText("Definissez l'identifiant du mur");
+         dialog.setContentText("Quel est l'identifiant du mur ?");
+         Optional<String> IDm2 = dialog.showAndWait();
+         id = Double.parseDouble(IDm2.get());
          m2=new Mur(id, c2, c3, nbrp, nbrf);
          m2.afficher();
          System.out.println("Longueur du mur="+m2.longueur());
          System.out.format("\nLongueur du mur =%.2f", m2.longueur());
          System.out.println("                ");
          while (lpf>m2.longueur()){
-             System.out.println("La longueur disponible n'est pas suffisante");
-             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-             nbrf = Lire.i();
-             System.out.println("Et combien voulez vous de portes ?");
-             nbrp = Lire.i();
+             dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
+            Optional<String> nf_6 = dialog.showAndWait();
+            nbrf = Double.parseDouble(nf_6.get());
+        
+            dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de portes ?");
+            Optional<String> np_6 = dialog.showAndWait();
+            nbrp = Double.parseDouble(np_6.get());
              lpf = nbrp*0.9+nbrf*1.2;
              
          }
          double prix_m2 =  m2.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m2 + " euros");
          
-        System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-         nbrf = Lire.i();
-         System.out.println("Et combien voulez vous de portes ?");
-         nbrp = Lire.i();
-         lpf = nbrp*0.9+nbrf*1.2;
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setContentText("Combien voulez-vous de fenêtres ?");
+        Optional<String> nf_3 = dialog.showAndWait();
+        nbrf = Double.parseDouble(nf_3.get());
+        
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
+        dialog.setContentText("Combien voulez-vous de portes ?");
+        Optional<String> np_3 = dialog.showAndWait();
+        nbrp = Double.parseDouble(np_3.get());
+        
+        lpf = nbrp*0.9+nbrf*1.2;
          
         prix_m = 0;
-         Lecture(1,0,0);
-         System.out.println("Combien voulez vous de revetements ?");
-         nbrev = Lire.i();
+        Lecture(1,0,0);
+        dialog.setTitle("Revêtements");
+        dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
+        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        Optional<String> nr_3= dialog.showAndWait();
+        nbrev = Integer.parseInt(nr_3.get());
          for (int z=1; z<nbrev+1; z++){
-             System.out.println("Donnez le numéro du revêtement souhaité ?");
-             int num = Lire.i();
+             dialog.setTitle("Revêtements");
+            dialog.setHeaderText("Definissez le type de revêtements que vous désirez");
+            dialog.setContentText("Quel revêtement voulez-vous ?");
+            Optional<String> tr_3 = dialog.showAndWait();
+            int num = Integer.parseInt(tr_3.get());
+             
              prix_m = prix_m + Lecture_bis(num);
              
          }
          Mur m3;
-         System.out.println("Identifiant du Mur");
-         id=Lire.i();
+         dialog.setTitle("Création des murs");
+         dialog.setHeaderText("Definissez l'identifiant du mur");
+         dialog.setContentText("Quel est l'identifiant du mur ?");
+         Optional<String> IDm3 = dialog.showAndWait();
+         id = Double.parseDouble(IDm3.get());
          m3=new Mur(id, c3, c4, nbrp, nbrf);
          m3.afficher();
          System.out.println("Longueur du mur="+m3.longueur());
          System.out.format("\nLongueur du mur =%.2f", m3.longueur());
          System.out.println("                ");
          while (lpf>m3.longueur()){
-             System.out.println("La longueur disponible n'est pas suffisante");
-             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-             nbrf = Lire.i();
-             System.out.println("Et combien voulez vous de portes ?");
-             nbrp = Lire.i();
+             dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
+            Optional<String> nf_7 = dialog.showAndWait();
+            nbrf = Double.parseDouble(nf_7.get());
+        
+            dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de portes ?");
+            Optional<String> np_7 = dialog.showAndWait();
+            nbrp = Double.parseDouble(np_7.get());
              lpf = nbrp*0.9+nbrf*1.2;
              
          }
          double prix_m3 =  m3.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m3 + " euros");
          
-         System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-         nbrf = Lire.i();
-         System.out.println("Et combien voulez vous de portes ?");
-         nbrp = Lire.i();
-         lpf = nbrp*0.9+nbrf*1.2;
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setContentText("Combien voulez-vous de fenêtres ?");
+        Optional<String> nf_4 = dialog.showAndWait();
+        nbrf = Double.parseDouble(nf_4.get());
+        
+        dialog.setTitle("Portes et fenêtres");
+        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
+        dialog.setContentText("Combien voulez-vous de portes ?");
+        Optional<String> np_4 = dialog.showAndWait();
+        nbrp = Double.parseDouble(np_4.get());
+        
+        lpf = nbrp*0.9+nbrf*1.2;
          
         prix_m = 0;
-         Lecture(1,0,0);
-         System.out.println("Combien voulez vous de revetements ?");
-         nbrev = Lire.i();
+        Lecture(1,0,0);
+        dialog.setTitle("Revêtements");
+        dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
+        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        Optional<String> nr_4 = dialog.showAndWait();
+        nbrev = Integer.parseInt(nr_4.get());
          for (int z=1; z<nbrev+1; z++){
-             System.out.println("Donnez le numéro du revêtement souhaité ?");
-             int num = Lire.i();
+            dialog.setTitle("Revêtements");
+            dialog.setHeaderText("Definissez le type de revêtements que vous désirez");
+            dialog.setContentText("Quel revêtement voulez-vous ?");
+            Optional<String> tr_4 = dialog.showAndWait();
+            int num = Integer.parseInt(tr_4.get());
+             
              prix_m = prix_m + Lecture_bis(num);
              
          }
          Mur m4;
-         System.out.println("Identifiant du Mur");
-         id=Lire.i();
+         dialog.setTitle("Création des murs");
+         dialog.setHeaderText("Definissez l'identifiant du mur");
+         dialog.setContentText("Quel est l'identifiant du mur ?");
+         Optional<String> IDm4 = dialog.showAndWait();
+         id = Double.parseDouble(IDm4.get());
          m4=new Mur(id, c4, c1, nbrp, nbrf);
          m4.afficher();
          System.out.println("Longueur du mur="+m4.longueur());
          System.out.format("\nLongueur du mur =%.2f", m4.longueur());
          System.out.println("                ");
          while (lpf>m4.longueur()){
-             System.out.println("La longueur disponible n'est pas suffisante");
-             System.out.println("Pour ce mur, combien voulez vous de fenetres ?");
-             nbrf = Lire.i();
-             System.out.println("Et combien voulez vous de portes ?");
-             nbrp = Lire.i();
+             dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
+            Optional<String> nf_8 = dialog.showAndWait();
+            nbrf = Double.parseDouble(nf_8.get());
+        
+            dialog.setTitle("Portes et fenêtres");
+            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
+            dialog.setContentText("Re-selectionnez un nombre de portes ?");
+            Optional<String> np_8 = dialog.showAndWait();
+            nbrp = Double.parseDouble(np_8.get());
              lpf = nbrp*0.9+nbrf*1.2;
              
          }
@@ -325,7 +422,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          listeMur.add(m4);
          
          
-         ArrayList<Revetements> listeRevetements = new ArrayList<>();
+         
          
          prix_m = 0;
          Lecture(0,0,1);
@@ -453,6 +550,11 @@ public class Devisbatiment extends Application /*throws IOException*/ {
     }
 
     public static void Lecture (int m, int a, int b){
+        JFrame fenetre = new JFrame("Revêtements disponibles");
+        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        fenetre.setLayout(new FlowLayout());
+        fenetre.setLayout(new BoxLayout(fenetre.getContentPane(), BoxLayout.Y_AXIS));
         System.out.println("Revêtements disponibles :");
         try
         {
@@ -461,22 +563,29 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         while(ligne!=null)
         {
             String[] listRev = ligne.split(";");
-            ligne = Catalogue_revetements.readLine();    
+            ligne = Catalogue_revetements.readLine();
             if (listRev[2].equals(String.valueOf(m))&&(listRev[2].equals("1"))){
-                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
+                JLabel label = new JLabel(listRev[1] + " numero " + listRev[0] + ". Prix : " + listRev[5]);
+                fenetre.getContentPane().add(label);
             }
             if (listRev[3].equals(String.valueOf(a))&&(listRev[3].equals("1"))){
-                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
+                JLabel label = new JLabel(listRev[1] + " numero " + listRev[0] + ". Prix : " + listRev[5]);
+                fenetre.getContentPane().add(label);
             }
             if (listRev[4].equals(String.valueOf(b))&&(listRev[4].equals("1"))){
-                System.out.println(listRev[1] + "numero" + listRev[0] + ". Prix : " + listRev[5]);
+                JLabel label = new JLabel(listRev[1] + " numero " + listRev[0] + ". Prix : " + listRev[5]);
+                fenetre.getContentPane().add(label);
                 }
-        }}
+            fenetre.pack();
+            fenetre.setVisible(true);
+        }
+        }
         catch(FileNotFoundException err){
         System.out.println( "Erreur :le fichier n’existe pas!\n "+err);}
         catch (IOException err){
-        System.out.println(" Erreur :\n "+err);}}
+        System.out.println(" Erreur :\n "+err);}
     
+    }
 
         
         
