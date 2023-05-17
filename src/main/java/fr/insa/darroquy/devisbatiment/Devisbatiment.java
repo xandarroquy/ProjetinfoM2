@@ -16,71 +16,148 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 
 public class Devisbatiment extends Application /*throws IOException*/ {
     
-   public static ArrayList<Piece> listePiece = new ArrayList<>();
+   
    public static ArrayList<Appartement> listeAppartement = new ArrayList<>();
    public static double [] Prix_pieces = new double [10];
    public static double [] Prix_appartements = new double [10];
    public static int l, w;
-   public static ArrayList<Mur> listeMur;
+   public static ArrayList<Piece> listePiece = new ArrayList<>();
+   public static ArrayList<Mur> listeMur= new ArrayList<>(); 
+   public static ArrayList<Coin> listeCoin= new ArrayList<>();
+
+   
            public static ArrayList<Mur> getListemur (){
             return listeMur ;
+        }
+           public static ArrayList<Piece> getListepiece (){
+            return listePiece ;
+        }
+           public static ArrayList<Coin> getListecoin (){
+            return listeCoin ;
         }
    @Override
    public void start(Stage primaryStage) throws IOException{
        
         FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-    
+       
         
-        System.out.println("Combien voulez vous d'appartements dans votre immeuble ?");
-        int nbr_appart = Lire.i();
-        for(int u = 1; u<= nbr_appart; u++){
-        System.out.println("Combien voulez vous de pieces dans cet appartement ?");
-        int nbr_p = Lire.i();
-        for (int k = 1; k<= nbr_p; k++){
+        TextInputDialog dialog;
+        dialog = new TextInputDialog();
+        
+        dialog.setTitle("Nombre d'appartements");
+        dialog.setHeaderText("Definissez le nombre d'appartements");
+        dialog.setContentText("Combien voulez-vous d'appartements dans votre immeuble ?");
+        Optional<String> nbr_appart = dialog.showAndWait();
+        double valeur = Double.parseDouble(nbr_appart.get());
+        for(int u = 1; u<= valeur; u++){
+        
+        
+        dialog.setTitle("Nombre de pièces");
+        dialog.setHeaderText("Definissez le nombre de pièces");
+        dialog.setContentText("Combien voulez-vous de pièces dans votre appartement ?");
+        Optional<String> nbr_p = dialog.showAndWait();
+        valeur = Double.parseDouble(nbr_p.get());
+        for (int k = 1; k<= valeur; k++){
+       
+            
         Coin c1;
-        System.out.println(" Identifiant du Coin");
-        int id=Lire.i();
-        System.out.println(" Abscisse du Coin");
-        double x=Lire.d();
-        System.out.println(" Ordonnée du Coin");
-        double y=Lire.d();
+        dialog.setTitle("Identifiant du coin");
+        dialog.setHeaderText("Definissez l'identifiant du coin");
+        dialog.setContentText("Quel est l'identifiant du coin");
+        Optional<String> IDc1 = dialog.showAndWait();
+        double id = Double.parseDouble(IDc1.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setContentText("Quelle est l'abscisse du coin");
+        Optional<String> xc1 = dialog.showAndWait();
+        double x = Double.parseDouble(xc1.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'ordonnée du coin");
+        dialog.setContentText("Quel est l'ordonnée du coin");
+        Optional<String> yc1 = dialog.showAndWait();
+        double y = Double.parseDouble(yc1.get());
+   
         c1=new Coin(id,x,y);
         c1.afficher();
                 
-         Coin c2;
-         System.out.println(" Identifiant du Coin");
-         id=Lire.i();
-         System.out.println(" Abscisse du Coin");
-         x=Lire.d();
-         System.out.println(" Ordonnée du Coin");
-         y=Lire.d();
-         c2=new Coin(id,x,y);
+        Coin c2;
+        dialog.setTitle("Identifiant du coin");
+        dialog.setHeaderText("Definissez l'identifiant du coin");
+        dialog.setContentText("Quel est l'identifiant du coin");
+        Optional<String> IDc2 = dialog.showAndWait();
+        id = Double.parseDouble(IDc2.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setContentText("Quelle est l'abscisse du coin");
+        Optional<String> xc2 = dialog.showAndWait();
+        x = Double.parseDouble(xc2.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'ordonnée du coin");
+        dialog.setContentText("Quel est l'ordonnée du coin");
+        Optional<String> yc2 = dialog.showAndWait();
+        y = Double.parseDouble(yc2.get());
+        
+        c2=new Coin(id,x,y);
+        c2.afficher();
+        
          
-         Coin c3;
-         System.out.println(" Identifiant du Coin");
-         id=Lire.i();
-         System.out.println(" Abscisse du Coin");
-         x=Lire.d();
-         System.out.println(" Ordonnée du Coin");
-         y=Lire.d();
-         c3=new Coin(id,x,y);
+        Coin c3;
+        dialog.setTitle("Identifiant du coin");
+        dialog.setHeaderText("Definissez l'identifiant du coin");
+        dialog.setContentText("Quel est l'identifiant du coin");
+        Optional<String> ID3 = dialog.showAndWait();
+        id = Double.parseDouble(ID3.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setContentText("Quelle est l'abscisse du coin");
+        Optional<String> xc3 = dialog.showAndWait();
+        x = Double.parseDouble(xc3.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'ordonnée du coin");
+        dialog.setContentText("Quel est l'ordonnée du coin");
+        Optional<String> yc3 = dialog.showAndWait();
+        y = Double.parseDouble(yc3.get());
+        
+        c3=new Coin(id,x,y);
+        c3.afficher();
          
-         Coin c4;
-         System.out.println(" Identifiant du Coin");
-         id=Lire.i();
-         System.out.println(" Abscisse du Coin");
-         x=Lire.d();
-         System.out.println(" Ordonnée du Coin");
-         y=Lire.d();
-         c4=new Coin(id,x,y);
+        Coin c4;
+        dialog.setTitle("Identifiant du coin");
+        dialog.setHeaderText("Definissez l'identifiant du coin");
+        dialog.setContentText("Quel est l'identifiant du coin");
+        Optional<String> IDc4 = dialog.showAndWait();
+        id = Double.parseDouble(IDc4.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setContentText("Quelle est l'abscisse du coin");
+        Optional<String> xc4 = dialog.showAndWait();
+        x = Double.parseDouble(xc4.get());
+        
+        dialog.setTitle("Coordonnées du coin");
+        dialog.setHeaderText("Definissez l'ordonnée du coin");
+        dialog.setContentText("Quel est l'ordonnée du coin");
+        Optional<String> yc4 = dialog.showAndWait();
+        y = Double.parseDouble(yc4.get());
+        
+        c4=new Coin(id,x,y);
+        c4.afficher();
          
-         ArrayList<Coin> listeCoin = new ArrayList<>();
          listeCoin.add(c1);
          listeCoin.add(c2);
          listeCoin.add(c3);
@@ -241,7 +318,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          double prix_m4 =  m4.surface(nbrp, nbrf)*prix_m;
          System.out.println("Le prix de ce mur est :" + prix_m4 + " euros");
         
-         listeMur = new ArrayList<>();
+         
          listeMur.add(m1);
          listeMur.add(m2);
          listeMur.add(m3);
@@ -365,7 +442,9 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         bufferedWriter.flush();
         bufferedWriter.close();
         
-        
+        primaryStage.setScene(new Scene(new Interface(listeCoin,listeMur,listePiece)));
+        primaryStage.setMaximized(true);
+        primaryStage.show();
         
     }
 
