@@ -308,15 +308,18 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          l = l + 1;
          
          for (Coin c : listeCoin){
-             bufferedWriter.write(c.idCoin + ";" + c.cx + ";" + c.cy + ";");
+             bufferedWriter.write("Coin:"+c.idCoin + ";" + c.cx + ";" + c.cy + ";");
              bufferedWriter.newLine();
          }
          
          for (Mur m : listeMur){
-             bufferedWriter.write(m.idMur + ";" + m.debut + ";" + m.fin + ";");
+             bufferedWriter.write("Mur:"+m.idMur + ";" + m.debut + ";" + m.fin + ";");
              bufferedWriter.newLine();
          }
-         
+         for (Piece p : listePiece){
+             bufferedWriter.write("Piece:"+p.idPiece + ";");
+             bufferedWriter.newLine();
+         }
         }
         Appartement Appart1;
         System.out.println("Identifiant de l'appartement");
@@ -331,8 +334,12 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         Prix_appartements[w] = prix_appart;
         w = w + 1;
         
-        }
         
+        for (Appartement a : listeAppartement){
+             bufferedWriter.write("Appartement: "+a.idAppart + ";");
+             bufferedWriter.newLine();
+        }
+        }
         Immeuble Immeuble1;
         System.out.println("Identifiant de l'immeuble");
         int id = Lire.i();
