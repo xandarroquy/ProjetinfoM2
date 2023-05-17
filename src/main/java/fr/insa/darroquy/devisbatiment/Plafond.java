@@ -12,12 +12,12 @@ import java.util.List;
  * @author xdarroquy01
  */
 public class Plafond {
-    int idPlafond;
+    double idPlafond;
     ArrayList<Mur>listeMur;
     ArrayList<Revetements> listeRevetements;
     double stremie;
     
-    Plafond(int id, ArrayList<Mur>mur, ArrayList<Revetements> revetements, double str )
+    Plafond(double id, ArrayList<Mur>mur, ArrayList<Revetements> revetements, double str )
     {
         this.idPlafond=id;
         this.listeMur=mur;
