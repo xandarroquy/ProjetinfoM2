@@ -37,13 +37,21 @@ public class Devisbatiment extends Application /*throws IOException*/ {
    public static double [] Prix_appartements = new double [10];
    public static int l, w;
    public static ArrayList<Piece> listePiece = new ArrayList<>();
-   public static ArrayList<Mur> listeMur= new ArrayList<>(); 
+   public static ArrayList <Mur> listeMur= new ArrayList<>(); 
    public static ArrayList<Coin> listeCoin= new ArrayList<>();
    public static ArrayList<Revetements> listeRevetements = new ArrayList<>();
+   public static ArrayList <Plafond> listePlafond= new ArrayList<>();
+   public static ArrayList <Sol> listeSol= new ArrayList<>();
 
    
            public static ArrayList<Mur> getListemur (){
             return listeMur ;
+        }
+           public static ArrayList<Plafond> getListeplafond (){
+            return listePlafond ;
+        }
+           public static ArrayList<Sol> getListesol (){
+            return listeSol ;
         }
            public static ArrayList<Piece> getListepiece (){
             return listePiece ;
@@ -54,13 +62,12 @@ public class Devisbatiment extends Application /*throws IOException*/ {
    @Override
    public void start(Stage primaryStage) throws IOException{
        
-        FileWriter fileWriter = new FileWriter("DevisBatiment.txt");
+        FileWriter fileWriter = new FileWriter("Devisbatiment.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
        
         
         TextInputDialog dialog;
         dialog = new TextInputDialog();
-        
         JFrame fenetre_1 = new JFrame("Différents prix");
         fenetre_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre_1.setSize(400, 300);
@@ -379,7 +386,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          dialog.setTitle("Création des murs");
          dialog.setHeaderText("Definissez l'identifiant du mur");
          dialog.setContentText("Quel est l'identifiant du mur ?");
-         Optional<String> IDm4 = dialog.showAndWait();
+            Optional<String> IDm4 = dialog.showAndWait();
          id = Double.parseDouble(IDm4.get());
          m4=new Mur(id, c4, c1, nbrp, nbrf);
          m4.afficher();
@@ -451,10 +458,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         fenetre_1.getContentPane().add(prix_p);
         fenetre_1.pack();
         fenetre_1.setVisible(true);
-        
-         ArrayList<Plafond> listePlafond = new ArrayList<>();
-         listePlafond.add(pl1);
-         
+        listePlafond.add(pl1);
          
          prix_m = 0;
          Lecture(0,1,0);
@@ -485,8 +489,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         fenetre_1.getContentPane().add(prix_s);
         fenetre_1.pack();
         fenetre_1.setVisible(true);
-         ArrayList<Sol> listeSol = new ArrayList<>();
-         listeSol.add(s1);
+        listeSol.add(s1);
          
         
          Piece p1;
@@ -506,24 +509,24 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          l = l + 1;
          
          for (Coin c : listeCoin){
-             bufferedWriter.write("Coin:"+c.idCoin + ";" + c.cx + ";" + c.cy + ";");
+             bufferedWriter.write("idCoin:"+c.idCoin + ";" + c.cx + ";" + c.cy + ";");
              bufferedWriter.newLine();
          }
          
          for (Mur m : listeMur){
-             bufferedWriter.write("Mur:"+m.idMur + ";" + m.debut + ";" + m.fin + ";");
+             bufferedWriter.write("Mur:"+m.idMur + "; Début " + m.debut + "; Fin " + m.fin + "; Nombre portes:"+ m.nbrporte +"; Nombre fenêtres: "+ m.nbrfenetre +";");
              bufferedWriter.newLine();
          }
          for (Plafond p : listePlafond){
-             bufferedWriter.write("Plafond:"+p.idPlafond + ";" );
+             bufferedWriter.write("Plafond:"+p.idPlafond + "; Murs: "+ p.listeMur + "; Trémie: " + p.stremie + "; Revêtments: "+ p.listeRevetements);
              bufferedWriter.newLine();
          }
          for (Sol s : listeSol){
-             bufferedWriter.write("Sol:"+s.idSol + ";" );
+             bufferedWriter.write("Sol:"+s.idSol + "; Liste Murs: "+ s.listeMur + "; Revêtements :"+ s.listeRevetements );
              bufferedWriter.newLine();
          }
          for (Piece p : listePiece){
-             bufferedWriter.write("Piece:"+p.idPiece + ";");
+             bufferedWriter.write("Piece:"+p.idPiece + "; Sol: "+ p.sol + "; Plafond: "+ p.plafond + "; Liste Murs de la pièce: "+ p.listeMur);
              bufferedWriter.newLine();
          }
         }
@@ -549,7 +552,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         
         
         for (Appartement a : listeAppartement){
-             bufferedWriter.write("Appartement: "+a.idAppart + ";");
+             bufferedWriter.write("Appartement: "+a.idAppart + "; Liste Pièces: "+ a.listePiece);
              bufferedWriter.newLine();
         }
         }
