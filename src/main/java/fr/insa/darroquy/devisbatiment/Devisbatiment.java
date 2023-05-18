@@ -9,7 +9,9 @@ package fr.insa.darroquy.devisbatiment;
  *
  * @author xdarroquy01
  */
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -25,6 +27,7 @@ import javafx.stage.Stage;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Devisbatiment extends Application /*throws IOException*/ {
     
@@ -58,6 +61,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         TextInputDialog dialog;
         dialog = new TextInputDialog();
         
+        JFrame fenetre_1 = new JFrame("Différents prix");
+        fenetre_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fenetre_1.setSize(400, 300);
+        fenetre_1.setLayout(new FlowLayout());
+        fenetre_1.setLayout(new BoxLayout(fenetre_1.getContentPane(), BoxLayout.Y_AXIS));
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x_1 = screenSize.width - fenetre_1.getWidth();
+        int y_1 = 0;
+        fenetre_1.setLocation(x_1, y_1);
+        
         
         dialog.setTitle("Nombre d'appartements");
         dialog.setHeaderText("Definissez le nombre d'appartements");
@@ -83,14 +96,11 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         double id = Double.parseDouble(IDc1.get());
         
         dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setHeaderText("Definissez les coordonnées du coin");
         dialog.setContentText("Quelle est l'abscisse du coin");
         Optional<String> xc1 = dialog.showAndWait();
         double x = Double.parseDouble(xc1.get());
-        
-        dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'ordonnée du coin");
-        dialog.setContentText("Quel est l'ordonnée du coin");
+        dialog.setContentText("Quelle est l'ordonnée du coin");
         Optional<String> yc1 = dialog.showAndWait();
         double y = Double.parseDouble(yc1.get());
    
@@ -105,14 +115,11 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         id = Double.parseDouble(IDc2.get());
         
         dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setHeaderText("Definissez les coordonnées du coin");
         dialog.setContentText("Quelle est l'abscisse du coin");
         Optional<String> xc2 = dialog.showAndWait();
         x = Double.parseDouble(xc2.get());
-        
-        dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'ordonnée du coin");
-        dialog.setContentText("Quel est l'ordonnée du coin");
+        dialog.setContentText("Quelle est l'ordonnée du coin");
         Optional<String> yc2 = dialog.showAndWait();
         y = Double.parseDouble(yc2.get());
         
@@ -128,13 +135,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         id = Double.parseDouble(ID3.get());
         
         dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'abscisse du coin");
+        dialog.setHeaderText("Definissez les coordonnées du coin");
         dialog.setContentText("Quelle est l'abscisse du coin");
         Optional<String> xc3 = dialog.showAndWait();
         x = Double.parseDouble(xc3.get());
-        
-        dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'ordonnée du coin");
         dialog.setContentText("Quel est l'ordonnée du coin");
         Optional<String> yc3 = dialog.showAndWait();
         y = Double.parseDouble(yc3.get());
@@ -154,9 +158,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         dialog.setContentText("Quelle est l'abscisse du coin");
         Optional<String> xc4 = dialog.showAndWait();
         x = Double.parseDouble(xc4.get());
-        
-        dialog.setTitle("Coordonnées du coin");
-        dialog.setHeaderText("Definissez l'ordonnée du coin");
         dialog.setContentText("Quel est l'ordonnée du coin");
         Optional<String> yc4 = dialog.showAndWait();
         y = Double.parseDouble(yc4.get());
@@ -172,13 +173,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          
          
         dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setHeaderText("Definissez un nombre de fenêtres et de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de fenêtres ?");
         Optional<String> nf = dialog.showAndWait();
         double nbrf = Double.parseDouble(nf.get());
-        
-        dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de portes ?");
         Optional<String> np = dialog.showAndWait();
         double nbrp = Double.parseDouble(np.get());
@@ -191,7 +189,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         Lecture(1,0,0);
         dialog.setTitle("Revêtements");
         dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
-        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        dialog.setContentText("Pour ce mur, combien voulez-vous de revêtements ?");
         Optional<String> nr = dialog.showAndWait();
         int nbrev = Integer.parseInt(nr.get());
          for (int z=1; z<nbrev+1; z++){
@@ -223,9 +221,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
             Optional<String> nf_5 = dialog.showAndWait();
             nbrf = Double.parseDouble(nf_5.get());
-        
-            dialog.setTitle("Portes et fenêtres");
-            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
             dialog.setContentText("Re-selectionnez un nombre de portes ?");
             Optional<String> np_5 = dialog.showAndWait();
             nbrp = Double.parseDouble(np_5.get());
@@ -233,16 +228,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
              
          }
          double prix_m1 =  m1.surface(nbrp, nbrf)*prix_m;
-         System.out.println("Le prix de ce mur est :" + prix_m1 + " euros");
+         JLabel prix_m_1 = new JLabel("Le prix de ce mur est :" + prix_m1);
+        fenetre_1.getContentPane().add(prix_m_1);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
          
         dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setHeaderText("Definissez un nombre de fenêtres et de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de fenêtres ?");
         Optional<String> nf_2 = dialog.showAndWait();
         nbrf = Double.parseDouble(nf_2.get());
-        
-        dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de portes ?");
         Optional<String> np_2 = dialog.showAndWait();
         nbrp = Double.parseDouble(np_2.get());
@@ -253,7 +248,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         Lecture(1,0,0);
         dialog.setTitle("Revêtements");
         dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
-        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        dialog.setContentText("Pour ce mur, combien voulez-vous de revêtements ?");
         Optional<String> nr_2 = dialog.showAndWait();
         nbrev = Integer.parseInt(nr_2.get());
          for (int z=1; z<nbrev+1; z++){
@@ -283,9 +278,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
             Optional<String> nf_6 = dialog.showAndWait();
             nbrf = Double.parseDouble(nf_6.get());
-        
-            dialog.setTitle("Portes et fenêtres");
-            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
             dialog.setContentText("Re-selectionnez un nombre de portes ?");
             Optional<String> np_6 = dialog.showAndWait();
             nbrp = Double.parseDouble(np_6.get());
@@ -293,16 +285,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
              
          }
          double prix_m2 =  m2.surface(nbrp, nbrf)*prix_m;
-         System.out.println("Le prix de ce mur est :" + prix_m2 + " euros");
+         JLabel prix_m_2 = new JLabel("Le prix de ce mur est :" + prix_m2);
+        fenetre_1.getContentPane().add(prix_m_2);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
          
         dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setHeaderText("Definissez un nombre de fenêtres et de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de fenêtres ?");
         Optional<String> nf_3 = dialog.showAndWait();
         nbrf = Double.parseDouble(nf_3.get());
-        
-        dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de portes ?");
         Optional<String> np_3 = dialog.showAndWait();
         nbrp = Double.parseDouble(np_3.get());
@@ -313,7 +305,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         Lecture(1,0,0);
         dialog.setTitle("Revêtements");
         dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
-        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        dialog.setContentText("Pour ce mur, combien voulez-vous de revêtements ?");
         Optional<String> nr_3= dialog.showAndWait();
         nbrev = Integer.parseInt(nr_3.get());
          for (int z=1; z<nbrev+1; z++){
@@ -343,9 +335,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
             Optional<String> nf_7 = dialog.showAndWait();
             nbrf = Double.parseDouble(nf_7.get());
-        
-            dialog.setTitle("Portes et fenêtres");
-            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
             dialog.setContentText("Re-selectionnez un nombre de portes ?");
             Optional<String> np_7 = dialog.showAndWait();
             nbrp = Double.parseDouble(np_7.get());
@@ -353,16 +342,16 @@ public class Devisbatiment extends Application /*throws IOException*/ {
              
          }
          double prix_m3 =  m3.surface(nbrp, nbrf)*prix_m;
-         System.out.println("Le prix de ce mur est :" + prix_m3 + " euros");
+         JLabel prix_m_3 = new JLabel("Le prix de ce mur est :" + prix_m3);
+        fenetre_1.getContentPane().add(prix_m_3);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
          
         dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de fenêtres pour ce mur");
+        dialog.setHeaderText("Definissez un nombre de fenêtres et de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de fenêtres ?");
         Optional<String> nf_4 = dialog.showAndWait();
         nbrf = Double.parseDouble(nf_4.get());
-        
-        dialog.setTitle("Portes et fenêtres");
-        dialog.setHeaderText("Definissez un nombre de portes pour ce mur");
         dialog.setContentText("Combien voulez-vous de portes ?");
         Optional<String> np_4 = dialog.showAndWait();
         nbrp = Double.parseDouble(np_4.get());
@@ -373,7 +362,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         Lecture(1,0,0);
         dialog.setTitle("Revêtements");
         dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
-        dialog.setContentText("Combien voulez-vous de revêtements ?");
+        dialog.setContentText("Pour ce mur, combien voulez-vous de revêtements ?");
         Optional<String> nr_4 = dialog.showAndWait();
         nbrev = Integer.parseInt(nr_4.get());
          for (int z=1; z<nbrev+1; z++){
@@ -403,9 +392,6 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             dialog.setContentText("Re-selectionnez un nombre de fenêtres ?");
             Optional<String> nf_8 = dialog.showAndWait();
             nbrf = Double.parseDouble(nf_8.get());
-        
-            dialog.setTitle("Portes et fenêtres");
-            dialog.setHeaderText("Malheureusement la surface disponible n'est pas suffisante :(");
             dialog.setContentText("Re-selectionnez un nombre de portes ?");
             Optional<String> np_8 = dialog.showAndWait();
             nbrp = Double.parseDouble(np_8.get());
@@ -413,7 +399,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
              
          }
          double prix_m4 =  m4.surface(nbrp, nbrf)*prix_m;
-         System.out.println("Le prix de ce mur est :" + prix_m4 + " euros");
+         JLabel prix_m_4 = new JLabel("Le prix de ce mur est :" + prix_m4);
+        fenetre_1.getContentPane().add(prix_m_4);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
         
          
          listeMur.add(m1);
@@ -426,30 +415,42 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          
          prix_m = 0;
          Lecture(0,0,1);
-         System.out.println("Pour ce plafond, combien voulez vous de revetements ?");
-         nbrev = Lire.i();
+         dialog.setTitle("Revêtements");
+        dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
+        dialog.setContentText("Pour ce plafond, combien voulez-vous de revêtements ?");
+        Optional<String> nr_p = dialog.showAndWait();
+        nbrev = Integer.parseInt(nr_p.get());
          for (int z=1; z<nbrev+1; z++){
-             System.out.println("Donnez le numéro du revêtement souhaité ?");
-             int num = Lire.i();
+              dialog.setTitle("Revêtements");
+            dialog.setHeaderText("Definissez le type de revêtements que vous désirez");
+            dialog.setContentText("Quel revêtement voulez-vous ?");
+            Optional<String> tr_p = dialog.showAndWait();
+            int num = Integer.parseInt(tr_p.get());
+            
              prix_m = prix_m + Lecture_bis(num);
              
          }
     
          Plafond pl1;
          double str = 0;
-         System.out .println("Identifiant du plafond");
-         id = Lire.i();
-         System.out.println("Voulez vous mettre une trémie ?(oui = 1, non = 0)");
-         int r = Lire.i();
-         if ( r==1 ){
+         dialog.setTitle("Création du plafond");
+         dialog.setHeaderText("Definissez l'identifiant du plafond");
+         dialog.setContentText("Quel est l'identifiant du plafond ?");
+         Optional<String> IDpl = dialog.showAndWait();
+         id = Double.parseDouble(IDpl.get());
+         
+         int option = JOptionPane.showOptionDialog(null, "Voulez-vous une trémie ?", "Création du plafond", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+         if (option == JOptionPane.YES_OPTION) {
             str = 1.44;
-         }
-         else{
-             str = 0;
-         }
+        } else if (option == JOptionPane.NO_OPTION) {
+            str = 0;}
+         
          pl1=new Plafond (id, listeMur, listeRevetements, str);
          double prix_pl1 =  pl1.surface(str)*prix_m;
-         System.out.println("Le prix de ce plafond est :" + prix_pl1 + " euros");
+         JLabel prix_p = new JLabel("Le prix du plafond est de :" + prix_pl1);
+        fenetre_1.getContentPane().add(prix_p);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
         
          ArrayList<Plafond> listePlafond = new ArrayList<>();
          listePlafond.add(pl1);
@@ -457,30 +458,49 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          
          prix_m = 0;
          Lecture(0,1,0);
-         System.out.println("Pour ce sol, combien voulez vous de revetements ?");
-         nbrev = Lire.i();
+         dialog.setTitle("Revêtements");
+        dialog.setHeaderText("Definissez le nombre de revêtements que vous désirez");
+        dialog.setContentText("Pour sol, combien voulez-vous de revêtements ?");
+        Optional<String> nr_s = dialog.showAndWait();
+        nbrev = Integer.parseInt(nr_s.get());
          for (int z=1; z<nbrev+1; z++){
-             System.out.println("Donnez le numéro du revêtement souhaité ?");
-             int num = Lire.i();
+             dialog.setTitle("Revêtements");
+            dialog.setHeaderText("Definissez le type de revêtements que vous désirez");
+            dialog.setContentText("Quel revêtement voulez-vous ?");
+            Optional<String> tr_s = dialog.showAndWait();
+            int num = Integer.parseInt(tr_s.get());
+   
              prix_m = prix_m + Lecture_bis(num);}
         
              
          Sol s1;
-         System.out.println("Identifiant du Sol");
-         id = Lire.i();
+         dialog.setTitle("Création du sol");
+         dialog.setHeaderText("Definissez l'identifiant du sol");
+         dialog.setContentText("Quel est l'identifiant du sol ?");
+         Optional<String> IDs = dialog.showAndWait();
+         id = Double.parseDouble(IDs.get());
          s1 = new Sol (id, listeMur, listeRevetements);
          double prix_s1 =  s1.surface()*prix_m;
-         System.out.println("Le prix de ce sol est :" + prix_s1 + " euros");
+         JLabel prix_s = new JLabel("Le prix du sol est de :" + prix_s1);
+        fenetre_1.getContentPane().add(prix_s);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
          ArrayList<Sol> listeSol = new ArrayList<>();
          listeSol.add(s1);
          
         
          Piece p1;
-         System.out.println("Identifiant de la pièce");
-         id=Lire.i();
+         dialog.setTitle("Création de la pièce");
+         dialog.setHeaderText("Definissez l'identifiant de la pièce");
+         dialog.setContentText("Quel est l'identifiant de la pièce ?");
+         Optional<String> IDp = dialog.showAndWait();
+         id = Double.parseDouble(IDp.get());
          p1=new Piece(id, pl1, s1, listeMur );
          double prix_piece = prix_m1 + prix_m2 + prix_m3 + prix_m4 + prix_s1 + prix_pl1;
-         System.out.println("Le prix de la piece est de :" + prix_piece);
+         JLabel prix_pi = new JLabel("Le prix de la piece est de :" + prix_piece);
+        fenetre_1.getContentPane().add(prix_pi);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
          listePiece.add(p1);
          Prix_pieces[l] = prix_piece;
          l = l + 1;
@@ -508,8 +528,11 @@ public class Devisbatiment extends Application /*throws IOException*/ {
          }
         }
         Appartement Appart1;
-        System.out.println("Identifiant de l'appartement");
-        int id = Lire.i();
+         dialog.setTitle("Création de l'appartement");
+         dialog.setHeaderText("Definissez l'identifiant de l'appartement");
+         dialog.setContentText("Quel est l'identifiant de l'appartement ?");
+         Optional<String> IDa = dialog.showAndWait();
+         double id = Double.parseDouble(IDa.get());
         Appart1 = new Appartement(id, listePiece);
         listeAppartement.add(Appart1);
         double prix_appart = 0;
@@ -517,6 +540,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
             prix_appart = Prix_pieces[j] + prix_appart;
             
         }
+        JLabel prix_a = new JLabel("Le prix de l'appartement est de :" + prix_appart);
+        fenetre_1.getContentPane().add(prix_a);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
         Prix_appartements[w] = prix_appart;
         w = w + 1;
         
@@ -527,14 +554,23 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         }
         }
         Immeuble Immeuble1;
-        System.out.println("Identifiant de l'immeuble");
-        int id = Lire.i();
+         dialog.setTitle("Création de l'immeuble");
+         dialog.setHeaderText("Definissez l'identifiant de l'immeuble");
+         dialog.setContentText("Quel est l'identifiant de l'immeuble ?");
+         Optional<String> IDi = dialog.showAndWait();
+         double id = Double.parseDouble(IDi.get());
         Immeuble1 = new Immeuble(id, listeAppartement);
         double prix_immeuble = 0;
         for (int v=0; v<Prix_appartements.length; v++ ){
             prix_immeuble = Prix_appartements[v] + prix_immeuble;
         }
-        System.out.println("L'immeuble coûte au total " + prix_immeuble);
+        JLabel prix_i = new JLabel("L'immeuble coûte au total " + prix_immeuble);
+        fenetre_1.getContentPane().add(prix_i);
+        JLabel tete = new JLabel("乁($ᴗ$)ㄏ");
+        fenetre_1.getContentPane().add(tete);
+        fenetre_1.pack();
+        fenetre_1.setVisible(true);
+        
         
         bufferedWriter.flush();
         bufferedWriter.close();
@@ -555,7 +591,9 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
         fenetre.setLayout(new FlowLayout());
         fenetre.setLayout(new BoxLayout(fenetre.getContentPane(), BoxLayout.Y_AXIS));
-        System.out.println("Revêtements disponibles :");
+        JLabel label_1 = new JLabel("Revêtements disponibles :");
+        fenetre.getContentPane().add(label_1);
+        
         try
         {
         BufferedReader Catalogue_revetements=new BufferedReader(new FileReader("Catalogue_revetements.txt"));
