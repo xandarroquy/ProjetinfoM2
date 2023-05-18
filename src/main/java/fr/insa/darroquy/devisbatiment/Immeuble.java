@@ -12,10 +12,10 @@ import java.util.ArrayList;
  */
 public class Immeuble {
     
-    int idImmeuble;
+    double idImmeuble;
     ArrayList<Appartement> listeAppartement;
 
-    public Immeuble(int idImmeuble, ArrayList<Appartement> listeAppartement) {
+    public Immeuble(double idImmeuble, ArrayList<Appartement> listeAppartement) {
         this.idImmeuble = idImmeuble;
         this.listeAppartement = listeAppartement;
     }
