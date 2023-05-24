@@ -578,9 +578,7 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         fenetre_1.pack();
         fenetre_1.setVisible(true);
         
-        //for (int jsp = 0; jsp < Prix_appartements.length ; jsp++ ){
-             //Prix_appartements[jsp] = 0;
-             //}
+        
         Prix_appartements[w] = prix_appart;
         w = w + 1;
         
