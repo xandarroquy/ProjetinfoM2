@@ -48,23 +48,12 @@ public class Mur {
         return(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
     }
     
-    double surface(double nbrp, double nbrf)
+    double surface(double nbrp, double nbrf, double hsp)
     {
         TextInputDialog dialog;
         dialog = new TextInputDialog();
         
-        dialog.setTitle("Hauteur sous-plafond");
-         dialog.setHeaderText("Definissez la hauteur sous-plafond");
-         dialog.setContentText("Quelle est la hauteur sous-plafond ?");
-         Optional<String> h = dialog.showAndWait();
-         double hsp = Double.parseDouble(h.get());
-        while (hsp<2.1){
-            dialog.setTitle("Hauteur sous-plafond");
-            dialog.setHeaderText("La hauteur sous plafond est trop basse !");
-            dialog.setContentText("Quelle est la nouvelle hauteur sous-plafond ?");
-            Optional<String> h_2 = dialog.showAndWait();
-            hsp = Double.parseDouble(h_2.get());
-        }
+       
         return(this.longueur()*hsp-(nbrp*1.89+1.44*nbrf));
     }
     @Override
