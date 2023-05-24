@@ -30,12 +30,12 @@ public class Interface extends Pane{
     
     void redraw (){
         for (Mur mur : murs){
-            Line linemur = new Line (mur.getDC().getX(),mur.getDC().getY(),mur.getFC().getX(),mur.getFC().getY());
+            Line linemur = new Line (mur.getDC().getX()*10+50,mur.getDC().getY()*10+50,mur.getFC().getX()*10+50,mur.getFC().getY()*10+50);
           getChildren().add(linemur);
         }
         
         for (Coin coin : coins){
-            Circle cercle = new Circle(coin.getX(),coin.getY(),5,Color.RED);
+            Circle cercle = new Circle(coin.getX()*10+50,coin.getY()*10+50,5,Color.RED);
             getChildren().add(cercle);
         }
     }
