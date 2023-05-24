@@ -527,6 +527,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         fenetre_1.pack();
         fenetre_1.setVisible(true);
          listePiece.add(p1);
+         for (int jsp = 0; jsp < Prix_pieces.length ; jsp++ ){
+             Prix_pieces[jsp] = 0;
+             }
+         
          Prix_pieces[l] = prix_piece;
          l = l + 1;
          
@@ -552,6 +556,9 @@ public class Devisbatiment extends Application /*throws IOException*/ {
              bufferedWriter.newLine();
          }
         }
+        
+        
+        
         Appartement Appart1;
          dialog.setTitle("Création de l'appartement");
          dialog.setHeaderText("Definissez l'identifiant de l'appartement");
@@ -570,6 +577,10 @@ public class Devisbatiment extends Application /*throws IOException*/ {
         fenetre_1.getContentPane().add(prix_a);
         fenetre_1.pack();
         fenetre_1.setVisible(true);
+        
+        //for (int jsp = 0; jsp < Prix_appartements.length ; jsp++ ){
+             //Prix_appartements[jsp] = 0;
+             //}
         Prix_appartements[w] = prix_appart;
         w = w + 1;
         
